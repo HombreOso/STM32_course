@@ -1,0 +1,13 @@
+// Where is the LED connected?
+// Port:	A
+// Pin:		5
+
+#define PERIPH_BASE			(0x40000000UL)
+
+#define AHB1_PERIPH_OFFSET 	(0x00020000UL)
+
+#define AHB1_PERIPH_BASE 	(PERIPH_BASE + AHB1_PERIPH_OFFSET)
+
+#define GPIOA_OFFSET		(0x0000U)
+
+#define GPIOA_BASE			(AHB1_PERIPH_BASE + GPIOA_OFFSET)
