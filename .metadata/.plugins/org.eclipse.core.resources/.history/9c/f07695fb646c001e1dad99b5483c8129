@@ -16,7 +16,4 @@
 #define AHB1EN_R_OFFSET		(0x30UL)
 #define RCC_AHB1EN_R		(RCC_BASE + AHB1EN_R_OFFSET)
 
-#define GPIOAEN				(1U<<0)
-
-
 
