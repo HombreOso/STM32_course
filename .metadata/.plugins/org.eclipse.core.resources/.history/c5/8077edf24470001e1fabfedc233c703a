@@ -1,9 +1,6 @@
-//nucleo-f446ze
-
 // Where is the LED connected?
 // Port:	A
 // Pin:		5
-// page 24 User Guide
 
 #define PERIPH_BASE			(0x40000000UL)  /*page 69 Data sheet*/
 
@@ -21,12 +18,12 @@
 
 #define GPIOAEN				(1U<<0) /*page 145 Reference Manual*/
 
-#define MODE_R_OFFSET		(0x00UL) /*page 187 Reference Manual, mode register*/
+#define MODE_R_OFFSET		(0x00UL)
 #define GPIOA_MODE_R		(*(volatile unsigned int *)(GPIOA_BASE + MODE_R_OFFSET))
 
-#define OD_R_OFFSET			(0x14UL) /*page 190 Reference Manual*/
+#define OD_R_OFFSET			(0x14UL)
 #define GPIOA_OD_R			(*(volatile unsigned int *)(GPIOA_BASE + OD_R_OFFSET))
 
-#define PIN5				(1U<<5) /*page 190 Reference Manual*/
+#define PIN5				(1U<<5)
 #define LED_PIN				PIN5
 
