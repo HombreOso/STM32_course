@@ -47,9 +47,9 @@ int main(void)
 		GPIOA_OD_R |= LED_PIN;
 
 		/*4. Experiment 2: toggle PA5*/
-		//GPIOA_OD_R ^= LED_PIN;
+		GPIOA_OD_R ^= LED_PIN;
 
 		//delay
-		//for(int i=0; i<100; i++){}
+		for(i=0;i<100000;i++){}
 	}
 }
