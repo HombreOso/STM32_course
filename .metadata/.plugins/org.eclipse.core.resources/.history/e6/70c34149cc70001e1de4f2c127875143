@@ -27,8 +27,8 @@
 #define ODR_OFFSET			(0x14UL) /*page 190 Reference Manual*/
 #define GPIOB_ODR			(*(volatile unsigned int *)(GPIOB_BASE + ODR_OFFSET))
 
-#define PIN7				(1U<<7) /*page 190 Reference Manual*/
-#define BLUE_LED_PIN		PIN7
+#define PIN5				(1U<<5) /*page 190 Reference Manual*/
+#define LED_PIN				PIN5
 
 
 int main(void)
@@ -36,20 +36,20 @@ int main(void)
 	/*1. Enable clock access to GPIOA*/
 	RCC_AHB1ENR |= GPIOBEN;
 
-	/*2. Set PB7 as output pin*/
-	GPIOB_MODER |= (1U<<14);
-	GPIOB_MODER &= ~(1U<<15);
+	/*2. Set PA5 as output pin*/
+	GPIOB_MODER |= (1U<<10);
+	GPIOB_MODER &= ~(1U<<11);
 
 	// infinite loop
 	while(1)
 	{
-		/*3. Set PB7 high*/
-		//GPIOB_ODR |= BLUE_LED_PIN;
+		/*3. Set PA5 high*/
+		GPIOB_ODR |= LED_PIN;
 
-		/*4. Experiment 2: toggle PB7*/
-		GPIOB_ODR ^= BLUE_LED_PIN;
+		/*4. Experiment 2: toggle PA5*/
+		//GPIOA_OD_R ^= LED_PIN;
 
 		//delay
-		for(int i=0; i<10000000; i++){}
+		//for(int i=0; i<100; i++){}
 	}
 }

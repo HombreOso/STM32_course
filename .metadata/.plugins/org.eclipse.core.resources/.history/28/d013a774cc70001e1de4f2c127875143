@@ -36,20 +36,20 @@ int main(void)
 	/*1. Enable clock access to GPIOA*/
 	RCC_AHB1ENR |= GPIOBEN;
 
-	/*2. Set PB7 as output pin*/
-	GPIOB_MODER |= (1U<<14);
-	GPIOB_MODER &= ~(1U<<15);
+	/*2. Set PA5 as output pin*/
+	GPIOB_MODER |= (1U<<10);
+	GPIOB_MODER &= ~(1U<<11);
 
 	// infinite loop
 	while(1)
 	{
-		/*3. Set PB7 high*/
-		//GPIOB_ODR |= BLUE_LED_PIN;
+		/*3. Set PA5 high*/
+		GPIOB_ODR |= BLUE_LED_PIN;
 
-		/*4. Experiment 2: toggle PB7*/
-		GPIOB_ODR ^= BLUE_LED_PIN;
+		/*4. Experiment 2: toggle PA5*/
+		//GPIOA_OD_R ^= LED_PIN;
 
 		//delay
-		for(int i=0; i<10000000; i++){}
+		//for(int i=0; i<100; i++){}
 	}
 }
