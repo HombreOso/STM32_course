@@ -5,6 +5,8 @@
 // Pin:		7
 // page 24 User Guide
 
+#include <stdint.h>
+
 #define PERIPH_BASE			(0x40000000UL)  /*page 69 Data sheet*/
 
 #define AHB1_PERIPH_OFFSET 	(0x00020000UL) /*page 67 Data sheet*/
@@ -33,17 +35,33 @@
 
 typedef struct
 {
-
+	volatile uint32_t MODER; /*GPIO port mode register, offset 0x00*/
+	volatile uint32_t DUMMY[4]; /*Dummy member of the struct*/
+	volatile uint32_t ODR; /*GPIO port output data register, offset 0x14*/
 }GPIO_TypeDef;
+
+typedef struct
+{
+	volatile uint32_t DUMMY[12]; /*Dummy member of the struct*/
+	volatile uint32_t AHB1ENR; /*RCC AHB1 peripheral clock register, offset 0x30*/
+}RCC_TypeDef;
+
+
+#define RCC 			((RCC_TypeDef *) RCC_BASE)
+#define GPIOB 			((GPIO_TypeDef *) GPIOB_BASE)
 
 int main(void)
 {
 	/*1. Enable clock access to GPIOA*/
-	RCC_AHB1ENR |= GPIOBEN;
+	//RCC_AHB1ENR |= GPIOBEN;
+	RCC -> AHB1ENR |= GPIOBEN;
 
 	/*2. Set PB7 as output pin*/
-	GPIOB_MODER |= (1U<<14);
-	GPIOB_MODER &= ~(1U<<15);
+//	GPIOB_MODER |= (1U<<14);
+//	GPIOB_MODER &= ~(1U<<15);
+
+	GPIOB -> MODER |= (1U<<14);
+	GPIOB -> MODER &= ~(1U<<15);
 
 	// infinite loop
 	while(1)
@@ -52,7 +70,9 @@ int main(void)
 		//GPIOB_ODR |= BLUE_LED_PIN;
 
 		/*4. Experiment 2: toggle PB7*/
-		GPIOB_ODR ^= BLUE_LED_PIN;
+//		GPIOB_ODR ^= BLUE_LED_PIN;
+
+		GPIOB -> ODR ^= BLUE_LED_PIN;
 
 		//delay
 		for(int i=0; i<10000000; i++){}
